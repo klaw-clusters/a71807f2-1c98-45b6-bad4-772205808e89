@@ -55,51 +55,6 @@
                 "engineResources": {},
                 "svcOrchSpec": {},
                 "traffic": 100
-            },
-            {
-                "name": "shadow",
-                "graph": {
-                    "name": "creditfraud-container",
-                    "implementation": "XGBOOST_SERVER",
-                    "modelUri": "gs://rfdickerson-credit-fraud-model/credit_fraud_xgb",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-08-04T16:17:49Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "creditfraud-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "1",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "project.seldon.io/creditfraud-container": "default",
-                    "seldon.io/canary": "false"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "shadow": true
             }
         ],
         "annotations": {
