@@ -1,0 +1,55 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1",
+    "metadata": {
+        "name": "creditcardfraud-xgb",
+        "namespace": "dev",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "creditcardfraud-xgb",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "creditcardfraud-xgb-container",
+                    "implementation": "XGBOOST_SERVER",
+                    "modelUri": "gs://rfdickerson-credit-fraud-model/xgb",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2021-08-05T17:56:25Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "creditcardfraud-xgb-container",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/creditcardfraud-xgb-container": "default"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "seldon"
+    },
+    "status": {}
+}
