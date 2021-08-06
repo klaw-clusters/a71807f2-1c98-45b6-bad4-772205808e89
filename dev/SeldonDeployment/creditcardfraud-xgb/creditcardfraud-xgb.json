@@ -6,6 +6,7 @@
         "namespace": "dev",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "a71807f2-1c98-45b6-bad4-772205808e89-dev",
             "fluentd": "true"
         }
     },
@@ -43,7 +44,14 @@
                 },
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 100
+                "traffic": 100,
+                "explainer": {
+                    "type": "AnchorTabular",
+                    "containerSpec": {
+                        "name": "",
+                        "resources": {}
+                    }
+                }
             },
             {
                 "name": "shadow",
