@@ -55,6 +55,40 @@
                 "engineResources": {},
                 "svcOrchSpec": {},
                 "traffic": 100
+            },
+            {
+                "name": "shadow",
+                "graph": {
+                    "name": "creditfraud-container",
+                    "implementation": "TENSORFLOW_SERVER",
+                    "modelUri": "gs://rfdickerson-credit-fraud-model/credit-fraud",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2021-08-06T16:23:00Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "creditfraud-container",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/creditfraud-container": "default",
+                    "seldon.io/canary": "false"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "shadow": true
             }
         ],
         "annotations": {
