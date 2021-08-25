@@ -1,0 +1,55 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1",
+    "metadata": {
+        "name": "demo2",
+        "namespace": "dev",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "demo2",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "demo2-container",
+                    "implementation": "XGBOOST_SERVER",
+                    "modelUri": "gs://rfdickerson-credit-fraud-model/xgb",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2021-08-25T15:02:07Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "demo2-container",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/demo2-container": "default"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "kfserving"
+    },
+    "status": {}
+}
