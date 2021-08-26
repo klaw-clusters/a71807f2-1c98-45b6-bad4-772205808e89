@@ -1,0 +1,55 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1",
+    "metadata": {
+        "name": "tfserving-test",
+        "namespace": "dev",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "tfserving-test",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "tfserving-test-container",
+                    "implementation": "TENSORFLOW_SERVER",
+                    "modelUri": "gs://rfdickerson-credit-fraud-model/credit-fraud",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2021-08-26T12:13:51Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "tfserving-test-container",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/tfserving-test-container": "default"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "tensorflow"
+    },
+    "status": {}
+}
